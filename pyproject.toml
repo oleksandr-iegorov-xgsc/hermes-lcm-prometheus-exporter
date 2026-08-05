@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hermes-lcm-prometheus-exporter"
+version = "0.1.0"
+description = "Read-only Prometheus exporter for Hermes LCM SQLite databases"
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "MIT"}
+authors = [{name = "Oleksandr Iegorov"}]
+classifiers = ["Programming Language :: Python :: 3", "License :: OSI Approved :: MIT License"]
+
+[project.scripts]
+hermes-lcm-prometheus-exporter = "hermes_lcm_prometheus_exporter.server:main"
+
+[dependency-groups]
+dev = ["pytest>=8.0", "ruff>=0.11"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/hermes_lcm_prometheus_exporter"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
